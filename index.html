@@ -471,11 +471,11 @@ a {
 
   <footer class="footer">
     <div><strong>SUBSTR8.Games</strong> / Phi Labs Research</div>
-    <div>Static dispatch board. Free infrastructure. Sniper rifle.</div>
+    <div>Static dispatch board. Free infrastructure. Sniper rifle. <span id="dispatch-source-note"></span></div>
   </footer>
 
 <script>
-window.SUBSTR8_ARTICLES = [
+window.SUBSTR8_FALLBACK_ARTICLES = [
   {
     "id": "sovereign-publishing",
     "title": "Architecting from the Belly of the Beast: Hijacking the GitHub Pages URI and Content Distribution Network",
@@ -541,7 +541,7 @@ window.SUBSTR8_ARTICLES = [
     "summary": "An introductory record for the project and research posture."
   }
 ];
-window.SUBSTR8_PROJECTS = [
+window.SUBSTR8_FALLBACK_PROJECTS = [
   {
     "id": "onewingedangel",
     "title": "OneWingedAngel FF7 Modding Studio",
@@ -573,10 +573,12 @@ window.SUBSTR8_PROJECTS = [
 ];
 
 (() => {
-  const articles = window.SUBSTR8_ARTICLES || [];
-  const projects = window.SUBSTR8_PROJECTS || [];
+  const DISPATCH_API = "https://substr8-dispatch-api.factoriolegion.workers.dev/api/content";
+  let articles = window.SUBSTR8_FALLBACK_ARTICLES || [];
+  let projects = window.SUBSTR8_FALLBACK_PROJECTS || [];
 
-  const byDateDesc = (a, b) => String(b.date || '').localeCompare(String(a.date || ''));
+  const normalizeDate = item => item.date || item.publicationDate || item.publication_date || "";
+  const byDateDesc = (a, b) => String(normalizeDate(b)).localeCompare(String(normalizeDate(a)));
 
   const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, char => ({
     '&': '&amp;',
@@ -588,7 +590,7 @@ window.SUBSTR8_PROJECTS = [
 
   const articleEntry = item => `
     <a class="entry" href="${escapeHTML(item.url)}" data-frame-link data-frame-title="${escapeHTML(item.title)}">
-      <span class="meta">${escapeHTML(item.date)} / ${escapeHTML(item.category)}</span>
+      <span class="meta">${escapeHTML(normalizeDate(item))} / ${escapeHTML(item.category)}</span>
       <strong>${escapeHTML(item.title)}</strong>
       <span>${escapeHTML(item.summary)}</span>
     </a>
@@ -608,30 +610,64 @@ window.SUBSTR8_PROJECTS = [
   const search = document.querySelector('[data-search]');
   const category = document.querySelector('[data-category]');
 
-  if (latest) latest.innerHTML = [...articles].sort(byDateDesc).slice(0, 4).map(articleEntry).join('');
-  if (projectList) projectList.innerHTML = projects.map(projectEntry).join('');
+  const renderLatest = () => {
+    if (latest) latest.innerHTML = [...articles].sort(byDateDesc).slice(0, 4).map(articleEntry).join('');
+  };
 
-  const categories = [...new Set(articles.map(item => item.category).filter(Boolean))].sort();
-  categories.forEach(value => {
-    const option = document.createElement('option');
-    option.value = value;
-    option.textContent = value;
-    category?.append(option);
-  });
+  const renderProjects = () => {
+    if (projectList) projectList.innerHTML = projects.map(projectEntry).join('');
+  };
+
+  const renderCategories = () => {
+    if (!category) return;
+    const current = category.value;
+    category.innerHTML = '<option value="">All categories</option>';
+    [...new Set(articles.map(item => item.category).filter(Boolean))].sort().forEach(value => {
+      const option = document.createElement('option');
+      option.value = value;
+      option.textContent = value;
+      category.append(option);
+    });
+    category.value = current;
+  };
 
   const renderArticles = () => {
     const q = (search?.value || '').trim().toLowerCase();
     const c = category?.value || '';
     const filtered = [...articles].sort(byDateDesc).filter(item => {
-      const haystack = [item.title, item.summary, item.category, item.date, item.url].join(' ').toLowerCase();
+      const haystack = [item.title, item.summary, item.category, normalizeDate(item), item.url, item.project, ...(item.tags || [])].join(' ').toLowerCase();
       return (!q || haystack.includes(q)) && (!c || item.category === c);
     });
     if (articleList) articleList.innerHTML = filtered.map(articleEntry).join('') || '<div class="card"><p>No matching articles.</p></div>';
   };
 
+  const renderAll = () => {
+    renderLatest();
+    renderProjects();
+    renderCategories();
+    renderArticles();
+  };
+
+  const loadDispatchData = async () => {
+    try {
+      const response = await fetch(DISPATCH_API + '?v=' + Date.now(), { cache: 'no-store' });
+      if (!response.ok) throw new Error('Dispatch API returned ' + response.status);
+      const data = await response.json();
+      if (Array.isArray(data.articles)) articles = data.articles;
+      if (Array.isArray(data.projects)) projects = data.projects;
+      document.documentElement.dataset.dispatchSource = 'db';
+      renderAll();
+    } catch (err) {
+      console.warn('Using embedded fallback dispatch data:', err);
+      document.documentElement.dataset.dispatchSource = 'fallback';
+      renderAll();
+    }
+  };
+
   search?.addEventListener('input', renderArticles);
   category?.addEventListener('change', renderArticles);
-  renderArticles();
+  renderAll();
+  loadDispatchData();
 
   document.querySelectorAll('[data-tab]').forEach(button => {
     button.addEventListener('click', () => {
@@ -688,6 +724,16 @@ window.SUBSTR8_PROJECTS = [
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape' && modal?.classList.contains('open')) closeModal();
   });
+
+
+  const sourceNote = document.querySelector('#dispatch-source-note');
+  const updateSourceNote = () => {
+    if (!sourceNote) return;
+    const source = document.documentElement.dataset.dispatchSource;
+    sourceNote.textContent = source === 'db' ? '/ live DB' : source === 'fallback' ? '/ fallback' : '';
+  };
+  new MutationObserver(updateSourceNote).observe(document.documentElement, { attributes: true, attributeFilter: ['data-dispatch-source'] });
+  updateSourceNote();
 
   const initial = location.hash.replace('#', '');
   const initialButton = initial && document.querySelector(`[data-tab="${CSS.escape(initial)}"]`);
