@@ -1,0 +1,25 @@
+{
+  "title": "Gemini Roasts Google: The Invisible Meter",
+  "creators": [
+    {
+      "name": "Phi Labs Research"
+    }
+  ],
+  "publisher": "Phi Labs Research",
+  "publication_date": "2026-11-13",
+  "version": "Rev02",
+  "resource_type": "publication/report",
+  "doi": "10.5281/zenodo.24198566",
+  "language": "eng",
+  "keywords": [
+    "Gemini",
+    "subscription transparency",
+    "AI product accountability",
+    "model availability",
+    "usage telemetry",
+    "consumer protection",
+    "primary evidence"
+  ],
+  "license": "PHI-RAID-616 Rev01 — custom license; see bundled license file",
+  "description": "Primary-source case record consisting of seven unmodified screenshots, an unaltered 482-line transcript, evidence-specific analyses, an executive summary, source integrity hashes, and a planned controlled recording protocol. Specification: PHI-RESEARCH-GEM-001."
+}
