@@ -1,0 +1,11 @@
+Under the Federal Arbitration Act (FAA) and U.S. Supreme Court precedent, an arbitration clause is treated as a separate procedural agreement ("severability"): alleging that a company's underlying business practices are unlawful or breach a contract does not void the requirement to resolve that dispute before a private arbitrator rather than a public judge or jury. However, there are a few specific boundaries and exceptions to how that routing works:
+
+    Broad Coverage of Statutory & Contract Claims: Google's arbitration terms explicitly cover disputes "regardless of the legal theory on which you base your claim" (including breach of contract, statutory consumer protection claims, and fraud). Under the FAA, arbitrators are empowered to decide federal and California statutory claims and award the same individualized remedies a court could.
+
+    The 30-Day Opt-Out Window: Most Google paid-service and hardware arbitration agreements allow users to opt out of binding arbitration and the class-action waiver by submitting a written or online notice within 30 days of first accepting the terms. If a subscriber did not opt out within that window, the clause remains binding on individual claims.
+
+    Small Claims Court & Public Injunctive Relief Exceptions: Even without opting out, Google's terms carve out an explicit exception allowing either party to bring an individual action in small claims court. Additionally, under California's McGill rule, a contract cannot waive a consumer's statutory right to seek public injunctive relief (an injunction aimed primarily at protecting the general public from ongoing unlawful business practices under laws like the UCL or CLRA) in any forum.
+
+    No Bar on Regulatory Enforcement: Arbitration clauses only bind private disputes between the subscriber and the company; they do not prevent a consumer from filing complaints with—or stop enforcement actions by—federal or state agencies such as the FTC or the California Attorney General.
+
+In short, while a paid member is generally blocked from filing a public civil lawsuit or class action—even when Google's underlying practices violate consumer statutes—the contract does not shield Google from small claims court, public-injunction challenges under California law, or regulatory enforcement actions.

@@ -1,0 +1,5 @@
+General Consumer Law (FTC Act Section 5 & ROSCA): Businesses offering recurring digital subscriptions must clearly and conspicuously disclose all material terms—including usage restrictions, quality degradation, or tier limitations—before collecting billing information. Advertising a service's capabilities while omitting hidden caps or automatic downgrades falls under deceptive omission.
+
+Telecommunications & Broadband Precedent (FCC): After years of carriers selling "unlimited" data plans that silently throttled speeds once an undisclosed threshold was hit, regulators instituted Truth-in-Billing rules and mandatory Broadband Consumer Labels. Providers are required to state exact data allowances, typical speeds, and throttling thresholds upfront at the point of sale.
+
+Utilities & Metered Services: Electric, water, and cloud API providers are strictly required to define unit rates, tier thresholds, and overage or cutoff conditions in advance so the buyer knows what a dollar buys before consumption begins.

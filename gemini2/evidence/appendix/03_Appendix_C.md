@@ -1,0 +1,9 @@
+Even after overhauling its quota system in May 2026 to use rolling 5-hour and weekly compute allowances (and adding a usage indicator inside Settings > Usage Limits), Google still does not define the underlying baseline unit at the point of sale. Rather than stating exact compute budgets, token allowances, or guaranteed prompt volumes in the purchase contract, the commercial offering relies on structural ambiguities that leave the buyer unable to verify what they are buying upfront:
+
+    Undefined Multipliers: Paid tiers are sold as relative multiples of an undisclosed baseline—such as "2x" for AI Plus ($4.99/mo), "4x" for AI Pro ($19.99/mo), and "5x" or "20x" for AI Ultra ($99.99–$199.99/mo)—without defining the numerical value of the "1x" standard limit.
+
+    Unilateral Modification Clauses: Google's documentation explicitly states that usage limits "may change without notice, including due to capacity constraints," allowing the company to adjust throughput thresholds dynamically after the monthly subscription fee has already been collected.
+
+    Automatic Tier Downgrades: When a paying subscriber exhausts their undisclosed compute allowance within a 5-hour or weekly window, access to flagship models is cut off and the session falls back to Flash-Lite unless the user waits out the reset timer or purchases additional AI credits.
+
+By structuring the agreement around relative multipliers and discretionary capacity clauses instead of fixed deliverables, Google shifts all capacity risk onto the subscriber while keeping the exact contract parameters undisclosed before purchase—testing the boundaries of established consumer disclosure rules under ROSCA and FTC Section 5 while regulators have yet to enforce standardized compute labeling for consumer AI plans.

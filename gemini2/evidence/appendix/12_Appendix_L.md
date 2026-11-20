@@ -1,0 +1,13 @@
+No — economically and operationally, a corporation operating inside an unpoliced enforcement vacuum has no direct financial incentive to voluntarily restrict its own margin or flexibility on behalf of the public, unless external market, reputational, or legislative pressure makes non-compliance more expensive than compliance.
+
+When a company faces no immediate legal penalty or binding judicial oversight over how it meters, throttles, or downgrades a paid subscription, corporate incentives align around protecting compute margins and shareholder return rather than maximizing consumer transparency:
+
+Compute Margin Protection Outweighs Disclosure:** Frontier AI inference carries high variable GPU and energy costs. Publishing rigid, binding token or prompt quotas would force Google either to over-provision expensive hardware during peak load or to issue refunds when capacity tightens. Keeping limits elastic and undefined lets Google absorb demand spikes by silently routing paid users to cheaper models like Flash without eroding gross margins.
+
+Asymmetric Switching Costs & Churn Tolerance:** Because consumer AI subscriptions are bundled into broader ecosystems (Google One storage, Workspace integrations, Android defaults), subscriber retention relies heavily on ecosystem lock-in rather than transparent quota guarantees. As long as subscription revenue grows faster than churn from frustrated power users, there is no financial penalty for opaque throttling.
+
+No First-Mover Reward for Transparency:** In a market where competitors also rely on dynamic, rolling, or opaque usage limits, voluntarily publishing strict, enforceable SLAs for consumer tiers exposes a provider to comparative criticism without delivering a proportional revenue boost.
+
+The Only Counter-Incentive Is Preempting Hard Regulation:** The sole reason an insulated corporation voluntarily adopts consumer-friendly disclosures is defensive—specifically, to stave off public backlash, press scrutiny, or legislative intervention (such as state-level AI pricing and transparency bills or FTC policy crackdowns) that could impose far stricter statutory mandates than the company would ever adopt on its own.
+
+In short, without enforceable legal consequences or acute reputational blowback, respecting the public's interest in clear contract specifications runs directly counter to a provider's short-term economic self-interest.

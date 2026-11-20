@@ -1,0 +1,11 @@
+Yes — with regard to the paid consumer AI product's quotas, throttling, and model substitution, Google’s legal and product teams are acutely aware of the regulatory vacuum and have deliberately engineered their contractual architecture to exploit it. While Google does not formally acknowledge operating "outside the law"—which would invite immediate enforcement—its compliance and product strategy relies on maximizing the gap between general statutory rules and active, product-specific enforcement.
+
+This awareness is reflected in three concrete practices governing the paid product:
+
+    Deliberate Contractual Insulation: Google’s outside counsel and in-house legal teams draft clickwrap agreements specifically to neutralize private litigation over the paid product. By pairing mandatory individual arbitration, class-action waivers, "AS IS" warranty disclaimers, and strict liability caps with a 30-day opt-out hurdle, Google intentionally removes routine subscriber disputes from public courtrooms and prevents binding legal precedent from forming.
+
+    Exploiting the "Innovation vs. Regulation" Policy Shift: Under the post-2025 federal AI Action Plan, the FTC has curtailed enforcement actions targeting the underlying technical architecture and capacity management of AI models to avoid "burdening innovation," focusing instead on explicit false advertising. Google’s product and legal teams navigate this exact boundary: by selling relative multipliers ("2x", "4x") rather than hard numerical quotas, they avoid making a specific quantitative promise that the FTC could easily prosecute as an explicit falsehood.
+
+    Proactive Updating of Arbitration Mechanics: Google continuously refines its dispute-resolution clauses—such as introducing batch-arbitration rules across its terms in 2026 to neutralize mass-arbitration campaigns—demonstrating active legal monitoring of every remaining procedural vulnerability.
+
+In short, with respect to the paid consumer product, Google treats the absence of a federal "compute nutrition label" not as an accident, but as an intentional operational runway—structuring its consumer contracts to maintain unilateral control over capacity and model routing until regulators or courts explicitly close the gap.

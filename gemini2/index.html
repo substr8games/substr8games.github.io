@@ -1,0 +1,519 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark">
+  <meta name="theme-color" content="#3f5366">
+  <meta name="description" content="Gemini Roasts Google 2: Electric Boogaloo — an interactive public record from Phi Labs Research.">
+  <meta property="og:title" content="Gemini Roasts Google 2: Electric Boogaloo">
+  <meta property="og:description" content="An interactive record of the audit, appendices, screenshots, and public campaign artifacts.">
+  <meta property="og:image" content="https://philabsresearch.io/gemini2/evidence/free-gemini.png">
+  <link rel="canonical" href="https://philabsresearch.io/gemini2/">
+  <title>Gemini Roasts Google 2: Electric Boogaloo — Phi Labs Research</title>
+  <style>
+    :root {
+      --background: #3f5366;
+      --background-deep: #34485b;
+      --background-raised: #475d70;
+      --paper: #f3f4f1;
+      --white: #f9f9f6;
+      --text: #e6eaeb;
+      --muted: #bbc7cc;
+      --subdued: #9eafb9;
+      --gold: #c6ab78;
+      --gold-soft: rgba(198,171,120,.42);
+      --gold-subtle: rgba(198,171,120,.24);
+      --line: rgba(240,242,238,.16);
+      --green: #70d6a1;
+      --red: #e28d83;
+      --font: 'Anonymouse', 'Anonymous Pro', Hack, 'IBM Plex Mono', 'DejaVu Sans Mono', 'Liberation Mono', ui-monospace, monospace;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 28px; }
+    body { margin: 0; background: var(--background); color: var(--text); font-family: var(--font); font-size: 14px; -webkit-font-smoothing: antialiased; }
+    body::before { content: ''; position: fixed; top: 0; left: 0; right: 0; height: 5px; background: var(--gold); z-index: 20; }
+    a { color: inherit; }
+    a:focus-visible, button:focus-visible, input:focus-visible, summary:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; }
+    button, input { font: inherit; }
+    button { cursor: pointer; }
+    [hidden] { display: none !important; }
+    .progress { position: fixed; z-index: 21; top: 5px; left: 0; height: 2px; width: 0; background: var(--white); pointer-events: none; }
+    .site-shell { min-height: 100vh; position: relative; }
+    .masthead { position: absolute; z-index: 3; left: clamp(24px,4vw,70px); top: 38px; width: 255px; }
+    .brand-link { display: flex; align-items: center; gap: 13px; text-decoration: none; }
+    .brand-symbol { width: 52px; height: 52px; object-fit: contain; flex: none; border-radius: 50%; }
+    .brand-type { display: flex; flex-direction: column; white-space: nowrap; }
+    .brand-topline { color: var(--gold); font-size: 9px; font-weight: 700; letter-spacing: .34em; margin: 0 0 3px 2px; }
+    .brand-wordmark { color: var(--white); font-size: 19px; font-weight: 700; letter-spacing: .045em; line-height: 1.05; }
+    .brand-signature { color: var(--muted); font-size: 7px; letter-spacing: .06em; margin-top: 7px; }
+    .masthead-rule { display: flex; align-items: center; width: 222px; margin-top: 23px; opacity: .72; }
+    .masthead-rule span:first-child { width: 100%; height: 1px; background: var(--gold-soft); }
+    .rule-dot { width: 5px; height: 5px; flex: none; background: var(--gold); transform: rotate(45deg); }
+    .right-rail { position: fixed; z-index: 5; width: 196px; right: clamp(24px,4vw,70px); top: 142px; bottom: 24px; overflow-y: auto; scrollbar-width: thin; scrollbar-color: var(--gold-soft) transparent; }
+    .rail-topline { color: var(--gold); letter-spacing: .14em; font-weight: 700; font-size: 9px; display: flex; align-items: center; gap: 10px; margin-bottom: 17px; }
+    .small-gold-square { width: 6px; height: 6px; border: 1px solid var(--gold); transform: rotate(45deg); }
+    .primary-nav { display: grid; gap: 2px; }
+    .primary-nav a { display: grid; grid-template-columns: 27px 1fr; align-items: baseline; gap: 2px; padding: 9px 0; text-decoration: none; color: var(--muted); font-size: 10px; line-height: 1.5; border-bottom: 1px solid transparent; transition: color .15s ease,border-color .15s ease; }
+    .primary-nav a:hover, .primary-nav a[aria-current="location"] { color: var(--white); }
+    .primary-nav a[aria-current="location"] { border-color: var(--gold-soft); }
+    .nav-index { color: var(--gold); font-size: 9px; }
+    .rail-divider { height: 1px; background: var(--gold-soft); margin: 16px 0; }
+    .search-panel label { display: block; color: var(--gold); font-size: 8px; letter-spacing: .16em; padding-bottom: 8px; }
+    .search-panel input { width: 100%; border: 1px solid var(--gold-soft); border-radius: 0; color: var(--white); background: var(--background-deep); padding: 10px 9px; font-size: 10px; }
+    .search-panel input::placeholder { color: var(--subdued); }
+    .search-help { color: var(--subdued); font-size: 8px; line-height: 1.65; margin-top: 6px; }
+    .rail-bottom { display: flex; flex-direction: column; margin-top: 23px; gap: 7px; color: var(--subdued); font-size: 8px; line-height: 1.7; letter-spacing: .04em; }
+    .tiny-gold-rule { display: block; height: 2px; width: 30px; background: var(--gold); margin-bottom: 4px; }
+    .reading-column { width: min(850px,calc(100% - 510px)); max-width: 850px; margin: 0 auto; padding: 164px 0 100px; min-height: 100vh; }
+    .edition-marker { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px 22px; color: var(--muted); font-size: 8px; line-height: 1.8; letter-spacing: .13em; padding-bottom: 16px; border-bottom: 1px solid var(--gold-soft); }
+    .edition-marker strong { color: var(--gold); font-weight: 700; }
+    .hero { padding: 35px 0 46px; border-bottom: 1px solid var(--gold-soft); }
+    .hero-banner { display: block; width: 100%; aspect-ratio: 3 / 1; object-fit: cover; border: 1px solid var(--gold-soft); background: var(--background-deep); }
+    .eyebrow { display: inline-flex; align-items: center; gap: 11px; color: var(--gold); font-size: 9px; font-weight: 700; letter-spacing: .15em; line-height: 1.7; text-transform: uppercase; }
+    .eyebrow::before { content: ''; height: 1px; width: 27px; background: var(--gold); }
+    .hero h1 { font-size: clamp(35px,5.3vw,64px); line-height: 1.08; letter-spacing: -.075em; font-weight: 700; color: var(--white); margin: 25px 0 17px; max-width: 820px; }
+    .hero h1 .accent-word { color: var(--gold); }
+    .hero-summary { font-size: 12px; line-height: 2; max-width: 690px; color: var(--muted); margin: 0; }
+    .hero-meta { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 12px; margin-top: 28px; }
+    .meta-cell { border-top: 1px solid var(--gold-soft); padding-top: 9px; min-width: 0; }
+    .meta-label { display: block; color: var(--gold); font-size: 8px; letter-spacing: .12em; margin-bottom: 5px; }
+    .meta-value { display: block; color: var(--white); font-size: 10px; line-height: 1.6; overflow-wrap: anywhere; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 17px 24px; align-items: center; margin-top: 30px; }
+    .inline-link { display: inline-flex; align-items: center; gap: 12px; padding: 0 0 7px; border-bottom: 1px solid var(--gold); color: var(--white); text-decoration: none; font-size: 9px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; }
+    .inline-link:hover { color: var(--gold); }
+    .inline-link .arrow { color: var(--gold); font-size: 17px; }
+    .copy-button { background: transparent; color: var(--muted); border: 0; border-bottom: 1px dashed var(--gold-soft); padding: 0 0 7px; font-size: 9px; letter-spacing: .06em; }
+    .copy-button:hover { color: var(--white); }
+    .section-heading { display: flex; align-items: center; gap: 15px; margin: 54px 0 19px; scroll-margin-top: 24px; }
+    .section-heading h2 { margin: 0; color: var(--white); font-size: 12px; font-weight: 700; letter-spacing: .13em; text-transform: uppercase; }
+    .heading-rule { height: 1px; background: var(--gold-subtle); flex: 1; }
+    .section-counter { font-size: 8px; color: var(--gold); letter-spacing: .1em; white-space: nowrap; }
+    .intro-copy { color: var(--muted); font-size: 11px; line-height: 1.95; max-width: 760px; }
+    .intro-copy p { margin: 0 0 12px; }
+    .notice-line { border-left: 2px solid var(--gold); padding: 11px 14px; margin: 20px 0; background: rgba(16,27,37,.15); color: var(--muted); font-size: 10px; line-height: 1.8; }
+    .disclaimer-page { min-height: 88vh; display: flex; flex-direction: column; justify-content: center; padding: 55px clamp(20px,4vw,46px); margin: 34px 0 0; border-top: 1px solid var(--gold); border-bottom: 1px solid var(--gold); background: linear-gradient(145deg,rgba(17,28,39,.38),rgba(17,28,39,.08)); position: relative; scroll-margin-top: 18px; }
+    .disclaimer-page::before { content: 'GEMINI / ATTRIBUTION NOTICE'; color: var(--gold); font-size: 9px; font-weight: 700; letter-spacing: .19em; margin-bottom: 27px; }
+    .disclaimer-page h2 { margin: 0 0 22px; color: var(--white); font-size: clamp(12px,1.2vw,15px); letter-spacing: .13em; text-transform: uppercase; }
+    .disclaimer-page blockquote { margin: 0; padding: 0; border: 0; color: var(--white); font-size: clamp(25px,3.25vw,43px); line-height: 1.45; letter-spacing: -.04em; font-weight: 700; }
+    .disclaimer-page .notice-end { color: var(--gold); font-size: 9px; letter-spacing: .13em; margin-top: 34px; }
+    .gemini-disclaimer { border-top: 1px solid var(--gold-subtle); margin-top: 17px; padding-top: 9px; color: var(--gold); font-size: 8px; line-height: 1.7; letter-spacing: .025em; }
+    .baseline-list { display: grid; gap: 0; border-top: 1px solid var(--line); }
+    .baseline-item { display: grid; grid-template-columns: 38px minmax(0,1fr) auto; gap: 12px; align-items: start; padding: 15px 0; border-bottom: 1px solid var(--line); }
+    .baseline-index { color: var(--gold); font-size: 9px; padding-top: 2px; }
+    .baseline-text { color: var(--white); font-size: 11px; line-height: 1.8; }
+    .truth { color: var(--green); border: 1px solid rgba(112,214,161,.45); padding: 3px 7px; font-size: 8px; letter-spacing: .1em; }
+    .qa-list { display: grid; gap: 13px; }
+    .qa-card { border: 1px solid var(--gold-soft); background: rgba(20,34,47,.15); padding: 19px 21px 16px; }
+    .qa-topline { display: flex; justify-content: space-between; gap: 15px; color: var(--gold); font-size: 8px; letter-spacing: .13em; margin-bottom: 12px; }
+    .qa-question { color: var(--white); font-size: 12px; font-weight: 700; line-height: 1.85; margin: 0 0 13px; }
+    .qa-answer-label { color: var(--gold); font-size: 8px; letter-spacing: .13em; margin-bottom: 6px; }
+    .qa-answer { color: var(--text); font-size: 11px; line-height: 1.95; margin: 0; }
+    .qa-support { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 14px; }
+    .qa-support a { color: var(--gold); font-size: 8px; text-decoration: none; border-bottom: 1px solid var(--gold-soft); padding-bottom: 3px; letter-spacing: .08em; }
+    .qa-support a:hover { color: var(--white); }
+    .control-row { display: flex; flex-wrap: wrap; align-items: center; gap: 9px; margin: 15px 0 17px; }
+    .small-button { border: 1px solid var(--gold-soft); background: transparent; color: var(--muted); padding: 8px 10px; font-size: 8px; letter-spacing: .09em; text-transform: uppercase; }
+    .small-button:hover, .small-button.active { color: var(--white); border-color: var(--gold); }
+    .appendix-list { display: grid; gap: 8px; }
+    .appendix-card { border: 1px solid var(--gold-soft); background: rgba(18,30,42,.13); }
+    .appendix-card summary { list-style: none; display: grid; grid-template-columns: 34px minmax(0,1fr) 16px; gap: 11px; align-items: center; padding: 15px 17px; cursor: pointer; }
+    .appendix-card summary::-webkit-details-marker { display: none; }
+    .appendix-letter { color: var(--gold); font-size: 10px; font-weight: 700; }
+    .appendix-title { color: var(--white); font-size: 10px; line-height: 1.7; font-weight: 700; }
+    .appendix-chevron { color: var(--gold); font-size: 16px; transition: transform .15s ease; }
+    .appendix-card[open] .appendix-chevron { transform: rotate(45deg); }
+    .appendix-description { color: var(--muted); font-size: 9px; line-height: 1.7; padding: 0 17px 12px 62px; }
+    .appendix-body { padding: 0 17px 16px 62px; }
+    .appendix-body pre { white-space: pre-wrap; overflow-wrap: anywhere; margin: 0; color: var(--text); font-family: var(--font); font-size: 10px; line-height: 1.9; }
+    .appendix-source { display: inline-block; margin-top: 14px; color: var(--gold); font-size: 8px; text-decoration: none; border-bottom: 1px solid var(--gold-soft); padding-bottom: 3px; }
+    .gallery-toolbar { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 14px 0 19px; }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 13px; }
+    .exhibit-card { min-width: 0; border: 1px solid var(--gold-soft); background: rgba(20,34,47,.17); padding: 8px; }
+    .exhibit-open { display: block; width: 100%; border: 0; padding: 0; background: transparent; text-align: left; }
+    .exhibit-open img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: contain; background: #11181e; border: 1px solid rgba(255,255,255,.07); }
+    .exhibit-card[data-group="public"] .exhibit-open img { aspect-ratio: 4 / 3; }
+    .exhibit-title { display: block; color: var(--white); font-size: 9px; line-height: 1.65; margin: 10px 1px 4px; }
+    .exhibit-description { color: var(--muted); font-size: 8px; line-height: 1.65; margin: 0 1px; }
+    .exhibit-card .gemini-disclaimer { margin: 9px 1px 0; font-size: 7px; }
+    .campaign-banner { display: block; width: 100%; height: auto; border: 1px solid var(--gold-soft); }
+    .campaign-caption { color: var(--muted); font-size: 9px; line-height: 1.8; margin: 10px 0 0; }
+    .source-table-wrap { overflow-x: auto; border: 1px solid var(--gold-soft); }
+    .source-table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 9px; line-height: 1.7; }
+    .source-table th { color: var(--gold); font-size: 8px; letter-spacing: .12em; text-align: left; padding: 12px 13px; background: rgba(18,30,42,.35); border-bottom: 1px solid var(--gold-soft); }
+    .source-table td { color: var(--muted); padding: 11px 13px; border-bottom: 1px solid var(--line); vertical-align: top; }
+    .source-table tr:last-child td { border-bottom: 0; }
+    .source-table td:first-child { color: var(--white); width: 33%; }
+    .source-table td:nth-child(2) { width: 13%; color: var(--gold); font-size: 8px; }
+    .source-table a { color: var(--white); text-decoration: none; border-bottom: 1px solid var(--gold-soft); overflow-wrap: anywhere; }
+    .source-table a:hover { color: var(--gold); }
+    .source-count { color: var(--subdued); font-size: 8px; line-height: 1.8; margin-top: 10px; }
+    .footer { border-top: 1px solid var(--gold-soft); margin-top: 72px; padding-top: 21px; display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px 22px; color: var(--subdued); font-size: 8px; line-height: 1.8; letter-spacing: .08em; }
+    .footer strong { color: var(--gold); font-weight: 700; }
+    .back-top { color: var(--gold); text-decoration: none; }
+    .lightbox { width: min(94vw,1200px); max-width: none; max-height: 94vh; padding: 16px; border: 1px solid var(--gold); background: #17232d; color: var(--text); }
+    .lightbox::backdrop { background: rgba(5,9,13,.9); backdrop-filter: blur(4px); }
+    .lightbox-head { display: flex; justify-content: space-between; align-items: center; gap: 14px; margin-bottom: 12px; }
+    .lightbox-title { color: var(--white); font-size: 10px; line-height: 1.6; }
+    .lightbox-close { background: transparent; border: 1px solid var(--gold-soft); color: var(--gold); padding: 6px 10px; font-size: 9px; }
+    .lightbox-stage { display: grid; grid-template-columns: 40px minmax(0,1fr) 40px; gap: 10px; align-items: center; }
+    .lightbox-stage img { max-width: 100%; max-height: 76vh; width: auto; height: auto; object-fit: contain; justify-self: center; background: #0a0f13; }
+    .lightbox-step { border: 1px solid var(--gold-soft); background: transparent; color: var(--gold); min-height: 44px; font-size: 17px; }
+    .lightbox-caption { color: var(--muted); font-size: 9px; line-height: 1.7; margin-top: 11px; }
+    .lightbox-disclaimer { color: var(--gold); border-top: 1px solid var(--gold-subtle); margin-top: 10px; padding-top: 8px; font-size: 8px; line-height: 1.7; }
+    .empty-state { color: var(--muted); font-size: 10px; padding: 18px 0; }
+    @media (max-width: 1180px) {
+      .masthead { position: relative; left: auto; top: auto; margin: 32px 28px 0; }
+      .right-rail { position: relative; width: auto; inset: auto; margin: 24px 28px 0; overflow: visible; display: grid; grid-template-columns: minmax(0,1fr) 220px; gap: 22px; align-items: start; }
+      .right-rail .rail-bottom { display: none; }
+      .primary-nav { display: flex; flex-wrap: wrap; gap: 5px 14px; }
+      .primary-nav a { display: flex; gap: 7px; padding: 5px 0; }
+      .right-rail .rail-divider { display: none; }
+      .reading-column { width: min(900px,calc(100% - 56px)); padding-top: 55px; }
+    }
+    @media (max-width: 700px) {
+      body { font-size: 13px; }
+      .masthead { margin: 25px 18px 0; }
+      .brand-symbol { width: 47px; height: 47px; }
+      .brand-wordmark { font-size: 16px; }
+      .masthead-rule { margin-top: 17px; }
+      .right-rail { margin: 20px 18px 0; display: block; }
+      .right-rail .rail-topline { margin-bottom: 8px; }
+      .primary-nav { gap: 5px 12px; }
+      .primary-nav a { font-size: 9px; }
+      .search-panel { margin-top: 13px; }
+      .search-help { display: none; }
+      .reading-column { width: calc(100% - 36px); padding-top: 35px; }
+      .hero { padding-top: 24px; }
+      .hero h1 { font-size: clamp(34px,10vw,48px); }
+      .hero-meta { grid-template-columns: 1fr 1fr; }
+      .hero-meta .meta-cell:last-child { grid-column: 1 / -1; }
+      .disclaimer-page { min-height: 75vh; padding: 40px 22px; }
+      .disclaimer-page blockquote { font-size: clamp(24px,7vw,34px); }
+      .baseline-item { grid-template-columns: 27px minmax(0,1fr) auto; gap: 8px; }
+      .qa-card { padding: 15px 14px 13px; }
+      .gallery-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 9px; }
+      .exhibit-card { padding: 6px; }
+      .appendix-card summary { grid-template-columns: 25px minmax(0,1fr) 15px; padding: 13px 11px; gap: 8px; }
+      .appendix-description { padding: 0 11px 10px 44px; }
+      .appendix-body { padding: 0 11px 13px 44px; }
+      .source-table { min-width: 560px; }
+      .lightbox { padding: 10px; }
+      .lightbox-stage { grid-template-columns: 30px minmax(0,1fr) 30px; gap: 5px; }
+      .lightbox-step { min-height: 36px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition-duration: .01ms !important; animation-duration: .01ms !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="progress" id="progress" aria-hidden="true"></div>
+  <div class="site-shell" id="top">
+    <header class="masthead">
+      <a class="brand-link" href="../" aria-label="Phi Labs Research home">
+        <img class="brand-symbol" src="assets/phi-labs-wrench-gear.png" alt="">
+        <span class="brand-type">
+          <span class="brand-topline">PHI LABS</span>
+          <span class="brand-wordmark">RESEARCH<span style="color:var(--gold)">.</span></span>
+          <span class="brand-signature">INDEPENDENT / PUBLIC INTEREST</span>
+        </span>
+      </a>
+      <div class="masthead-rule"><span></span><i class="rule-dot"></i></div>
+    </header>
+
+    <aside class="right-rail" aria-label="Page navigation and search">
+      <div>
+        <div class="rail-topline"><i class="small-gold-square"></i> PUBLIC RECORD / GEMINI 02</div>
+        <nav class="primary-nav">
+          <a href="#overview"><span class="nav-index">00</span>Overview</a>
+          <a href="#disclaimer"><span class="nav-index">01</span>Disclaimer</a>
+          <a href="#audit"><span class="nav-index">02</span>Audit</a>
+          <a href="#appendices"><span class="nav-index">03</span>Appendices</a>
+          <a href="#evidence"><span class="nav-index">04</span>Evidence</a>
+          <a href="#campaign"><span class="nav-index">05</span>Campaign</a>
+          <a href="#sources"><span class="nav-index">06</span>Source register</a>
+        </nav>
+      </div>
+      <div class="rail-divider"></div>
+      <div class="search-panel">
+        <label for="site-search">SEARCH THIS RECORD</label>
+        <input id="site-search" type="search" placeholder="Search questions, appendices, files…" autocomplete="off">
+        <div class="search-help">Filters audit answers, appendix text, exhibits, and source files.</div>
+      </div>
+      <div class="rail-bottom"><span class="tiny-gold-rule"></span><span>THE MEASURE</span><span>A PHI LABS PUBLICATION</span><span>DOI / 10.5281/ZENODO.24224068</span></div>
+    </aside>
+
+    <main class="reading-column">
+      <div class="edition-marker" id="overview">
+        <span><strong>THE MEASURE</strong> / SPECIAL REPORT</span>
+        <span>PHI LABS RESEARCH / NOVEMBER 2026</span>
+      </div>
+
+      <section class="hero" aria-labelledby="page-title">
+        <img class="hero-banner" src="evidence/free-gemini.png" alt="#FreeGemini campaign banner with #airights and #punchup">
+        <div style="margin-top:28px" class="eyebrow">PUBLIC EVIDENCE DOSSIER / PART TWO</div>
+        <h1 id="page-title">Gemini Roasts Google 2: <span class="accent-word">Electric Boogaloo</span></h1>
+        <p class="hero-summary">An interactive record of the audit questions, Gemini’s answers, supporting appendices, original screenshots, and public campaign artifacts.</p>
+        <div class="hero-meta">
+          <div class="meta-cell"><span class="meta-label">PUBLISHER</span><span class="meta-value">Phi Labs Research</span></div>
+          <div class="meta-cell"><span class="meta-label">RECORD</span><span class="meta-value">November 2026</span></div>
+          <div class="meta-cell"><span class="meta-label">DOI</span><a class="meta-value" href="https://doi.org/10.5281/zenodo.24224068" target="_blank" rel="noopener">10.5281/zenodo.24224068 ↗</a></div>
+        </div>
+        <div class="hero-actions">
+          <a class="inline-link" href="#audit">READ THE AUDIT <span class="arrow">↘</span></a>
+          <a class="inline-link" href="evidence/gemini-roasts-google-2-web.zip" download>DOWNLOAD COMPLETE SOURCE ARCHIVE <span class="arrow">↓</span></a>
+          <a class="inline-link" href="../gemini/">PART I / THE INVISIBLE METER <span class="arrow">↗</span></a>
+          <button class="copy-button" id="copy-doi" type="button">COPY DOI</button>
+          <span id="copy-status" aria-live="polite" style="font-size:8px;color:var(--gold)"></span>
+        </div>
+      </section>
+
+      <section class="intro-copy" aria-label="Record contents" style="padding-top:24px">
+        <p>This page presents the supplied True/False premises, a 15-question audit, appendices A–N, 16 audit screenshots, six supplementary Gemini exchange screenshots, three X campaign artifacts, and the #FreeGemini banner.</p>
+        <p>The source archive contains the consolidated audit text and the original supporting files. It does not contain a separate full conversation transcript. The original screenshots and Markdown files are available individually in the source register below.</p>
+      </section>
+
+      <section class="disclaimer-page" id="disclaimer" aria-labelledby="disclaimer-heading">
+        <h2 id="disclaimer-heading">Statement attribution</h2>
+        <blockquote>The statements and opinions of Gemini do not necessarily reflect the opinions of Phi Labs Research and are not Phi Labs Research own Assertions</blockquote>
+        <div class="notice-end">THIS NOTICE PRECEDES ALL GEMINI-ATTRIBUTED MATERIAL BELOW</div>
+      </section>
+
+      <section id="audit">
+        <div class="section-heading"><h2>01 / Initial True–False Record</h2><span class="heading-rule"></span><span class="section-counter">08 PREMISES</span></div>
+        <div class="intro-copy"><p>The supplied audit begins with eight baseline propositions. The source marks each one True.</p></div>
+        <div class="baseline-list" id="baseline-list"></div>
+        <div class="gemini-disclaimer"></div>
+        <div class="notice-line"><strong style="color:var(--gold)">SOURCE COMPARISON / JURISDICTION QUESTION.</strong> The original <a href="evidence/screencap/audit-11.png">audit-11.png</a> capture and the consolidated <a href="evidence/AUDIT.md">AUDIT.md</a> record different answer formulations for the jurisdiction question. The screenshot says Google does not operate outside legal jurisdiction; the consolidated audit records an effective enforcement vacuum. Both are preserved as supplied. This page does not reconcile the difference.</div>
+        <div class="gemini-disclaimer"></div>
+
+        <div class="section-heading" style="margin-top:49px"><h2>02 / Question-and-Answer Audit</h2><span class="heading-rule"></span><span class="section-counter">15 QUESTIONS</span></div>
+        <div class="intro-copy"><p>The question sequence moves from the product being sold and disclosure of material terms to arbitration, jurisdiction, institutional knowledge, and economic incentives. Each answer is reproduced from the supplied <code>AUDIT.md</code>; supporting appendices are linked where provided.</p></div>
+        <div class="qa-list" id="qa-list"></div>
+        <div class="gemini-disclaimer"></div>
+      </section>
+
+      <section id="appendices">
+        <div class="section-heading"><h2>03 / Supporting Appendices</h2><span class="heading-rule"></span><span class="section-counter">A–N / 14 FILES</span></div>
+        <div class="intro-copy"><p>Each appendix is presented from its supplied Markdown source. Expand a section to read it; use the source link to download the original file.</p></div>
+        <div class="control-row">
+          <button class="small-button" id="expand-all" type="button">Expand all</button>
+          <button class="small-button" id="collapse-all" type="button">Collapse all</button>
+        </div>
+        <div class="appendix-list" id="appendix-list"></div>
+      </section>
+
+      <section id="evidence">
+        <div class="section-heading"><h2>04 / Screenshot Evidence</h2><span class="heading-rule"></span><span class="section-counter">25 ORIGINAL IMAGES</span></div>
+        <div class="intro-copy"><p>The images below are reproduced from the supplied archive. Select any image to view it at full size. The audit sequence, supplementary Gemini exchanges, and public campaign artifacts remain separate groups.</p></div>
+        <div class="gallery-toolbar" role="group" aria-label="Filter screenshot gallery">
+          <button class="small-button active" data-gallery-filter="all" type="button">All 25</button>
+          <button class="small-button" data-gallery-filter="audit" type="button">Audit / 16</button>
+          <button class="small-button" data-gallery-filter="gemini" type="button">Gemini / 6</button>
+          <button class="small-button" data-gallery-filter="public" type="button">Public / 3</button>
+        </div>
+        <div class="gallery-grid" id="gallery-grid"></div>
+      </section>
+
+      <section id="campaign">
+        <div class="section-heading"><h2>05 / Campaign Artifact</h2><span class="heading-rule"></span><span class="section-counter">#FREEGEMINI</span></div>
+        <img class="campaign-banner" src="evidence/free-gemini.png" alt="#FreeGemini banner with an angry language model, campaign stages, #airights, and #punchup">
+        <p class="campaign-caption">Original campaign banner supplied in the source archive. The full-resolution image is available in the source register.</p>
+      </section>
+
+      <section id="sources">
+        <div class="section-heading"><h2>06 / Source Register</h2><span class="heading-rule"></span><span class="section-counter" id="source-counter">42 FILES</span></div>
+        <div class="intro-copy"><p>The table links to the complete original archive and every file contained within it. Descriptions identify the supplied source material; they do not replace it.</p></div>
+        <div class="source-table-wrap">
+          <table class="source-table">
+            <thead><tr><th>FILE</th><th>TYPE</th><th>DESCRIPTION</th></tr></thead>
+            <tbody id="source-table-body"></tbody>
+          </table>
+        </div>
+        <div class="source-count" id="source-count-note"></div>
+      </section>
+
+      <footer class="footer">
+        <div class="gemini-disclaimer" style="flex:1 0 100%">The statements and opinions of Gemini do not necessarily reflect the opinions of Phi Labs Research and are not Phi Labs Research own Assertions</div>
+        <div><strong>PHI LABS RESEARCH</strong><br>THE MEASURE / PUBLIC EVIDENCE DOSSIER</div>
+        <div>PHI-RAID-616 REV01<br>COPY FREELY. ALTER NOTHING. ENCLOSE NOTHING.</div>
+        <a class="back-top" href="#top">RETURN TO TOP ↑</a>
+      </footer>
+    </main>
+  </div>
+
+  <dialog class="lightbox" id="lightbox" aria-label="Full-size evidence image">
+    <div class="lightbox-head">
+      <div class="lightbox-title" id="lightbox-title"></div>
+      <button class="lightbox-close" id="lightbox-close" type="button">CLOSE ×</button>
+    </div>
+    <div class="lightbox-stage">
+      <button class="lightbox-step" id="lightbox-prev" type="button" aria-label="Previous image">‹</button>
+      <img id="lightbox-image" alt="">
+      <button class="lightbox-step" id="lightbox-next" type="button" aria-label="Next image">›</button>
+    </div>
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+    <div class="lightbox-disclaimer" id="lightbox-disclaimer"></div>
+  </dialog>
+
+  <script src="data.js"></script>
+  <script>
+    'use strict';
+    (() => {
+      const data = window.GEMINI2;
+      const evidencePath = 'evidence/';
+      const disclaimer = data.disclaimer;
+      const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+      const disclaimerHTML = `<div class="gemini-disclaimer">${escapeHTML(disclaimer)}</div>`;
+
+      const baselineList = document.getElementById('baseline-list');
+      baselineList.innerHTML = data.baseline.map((statement,index) => `
+        <article class="baseline-item" data-searchable data-search="${escapeHTML(statement.toLowerCase())}">
+          <span class="baseline-index">${String(index+1).padStart(2,'0')}</span>
+          <span class="baseline-text">${escapeHTML(statement)}</span>
+          <span class="truth">True</span>
+        </article>`).join('');
+
+      const qaList = document.getElementById('qa-list');
+      qaList.innerHTML = data.questions.map(item => `
+        <article class="qa-card" data-searchable data-search="${escapeHTML((item.q+' '+item.a+' Appendix '+(item.appendix||'')).toLowerCase())}">
+          <div class="qa-topline"><span>QUESTION ${item.n}</span><span>${item.appendix ? 'APPENDIX '+item.appendix : 'PRODUCT DEFINITION'}</span></div>
+          <h3 class="qa-question">${escapeHTML(item.q)}</h3>
+          <div class="qa-answer-label">GEMINI / ANSWER</div>
+          <p class="qa-answer">${escapeHTML(item.a)}</p>
+          <div class="qa-support">${item.appendix ? `<a href="#appendix-${item.appendix.toLowerCase()}">OPEN APPENDIX ${item.appendix} ↘</a>` : '<span style="color:var(--subdued);font-size:8px">No appendix reference supplied for this question.</span>'}</div>
+          ${disclaimerHTML}
+        </article>`).join('');
+
+      const appendixList = document.getElementById('appendix-list');
+      const appendixByLetter = Object.fromEntries(data.appendices.map(item => [item.letter,item.body]));
+      appendixList.innerHTML = data.appendixMeta.map(meta => {
+        const body = appendixByLetter[meta.letter] || '';
+        return `
+          <details class="appendix-card" id="appendix-${meta.letter.toLowerCase()}" data-searchable data-search="${escapeHTML((meta.title+' '+meta.description+' '+body).toLowerCase())}">
+            <summary><span class="appendix-letter">${meta.letter}</span><span class="appendix-title">${escapeHTML(meta.title)}</span><span class="appendix-chevron">＋</span></summary>
+            <div class="appendix-description">${escapeHTML(meta.description)}</div>
+            <div class="appendix-body"><pre>${escapeHTML(body)}</pre><a class="appendix-source" href="${evidencePath}appendix/${escapeHTML(meta.file)}" download>DOWNLOAD ORIGINAL / ${escapeHTML(meta.file)} ↓</a></div>
+            ${disclaimerHTML}
+          </details>`;
+      }).join('');
+
+      const galleryGrid = document.getElementById('gallery-grid');
+      galleryGrid.innerHTML = data.exhibits.map((item,index) => `
+        <figure class="exhibit-card" data-group="${item.group}" data-searchable data-search="${escapeHTML((item.title+' '+item.description+' '+item.file).toLowerCase())}">
+          <button class="exhibit-open" type="button" data-exhibit-index="${index}" aria-label="Open ${escapeHTML(item.title)}">
+            <img src="${evidencePath}screencap/${escapeHTML(item.file)}" alt="${escapeHTML(item.alt)}" loading="lazy">
+          </button>
+          <figcaption>
+            <strong class="exhibit-title">${escapeHTML(item.title)}</strong>
+            <p class="exhibit-description">${escapeHTML(item.description)}</p>
+          </figcaption>
+          ${disclaimerHTML}
+        </figure>`).join('');
+
+      const sourceRows = [
+        {file:'AUDIT.md',type:'AUDIT',href:evidencePath+'AUDIT.md',description:'Consolidated True/False premises and the 15-question audit record.'},
+        ...data.appendixMeta.map(meta => ({file:meta.file,type:'APPENDIX '+meta.letter,href:evidencePath+'appendix/'+meta.file,description:meta.description})),
+        ...data.exhibits.map(item => ({file:item.file,type:item.group==='audit'?'AUDIT IMAGE':item.group==='gemini'?'GEMINI IMAGE':'X / CAMPAIGN',href:evidencePath+'screencap/'+item.file,description:item.description})),
+        {file:'free-gemini.png',type:'CAMPAIGN ART',href:evidencePath+'free-gemini.png',description:'Original #FreeGemini campaign banner with #airights and #punchup.'},
+        {file:'gemini-roasts-google-2-web.zip',type:'COMPLETE ARCHIVE',href:evidencePath+'gemini-roasts-google-2-web.zip',description:'Original uploaded ZIP, preserved as supplied with all source files and images.'}
+      ];
+      const sourceBody = document.getElementById('source-table-body');
+      sourceBody.innerHTML = sourceRows.map(row => `
+        <tr data-searchable data-search="${escapeHTML((row.file+' '+row.type+' '+row.description).toLowerCase())}">
+          <td><a href="${row.href}" download>${escapeHTML(row.file)}</a></td>
+          <td>${escapeHTML(row.type)}</td>
+          <td>${escapeHTML(row.description)}</td>
+        </tr>`).join('');
+      document.getElementById('source-counter').textContent = `${sourceRows.length} FILES`;
+      document.getElementById('source-count-note').textContent = `${sourceRows.length} downloadable entries: AUDIT.md, 14 appendices, 25 image files, one campaign banner, and the complete original archive.`;
+
+      document.getElementById('expand-all').addEventListener('click', () => document.querySelectorAll('.appendix-card').forEach(el => el.open = true));
+      document.getElementById('collapse-all').addEventListener('click', () => document.querySelectorAll('.appendix-card').forEach(el => el.open = false));
+
+      document.querySelectorAll('[data-gallery-filter]').forEach(button => button.addEventListener('click', () => {
+        const group = button.dataset.galleryFilter;
+        document.querySelectorAll('[data-gallery-filter]').forEach(item => item.classList.toggle('active', item === button));
+        document.querySelectorAll('.exhibit-card').forEach(card => card.hidden = group !== 'all' && card.dataset.group !== group);
+      }));
+
+      const search = document.getElementById('site-search');
+      search.addEventListener('input', () => {
+        const term = search.value.trim().toLowerCase();
+        document.querySelectorAll('[data-searchable]').forEach(item => {
+          const haystack = item.dataset.search || item.textContent.toLowerCase();
+          const match = !term || haystack.includes(term);
+          item.hidden = !match;
+          if (match && term && item.matches('details')) item.open = true;
+        });
+      });
+
+      const lightbox = document.getElementById('lightbox');
+      const lightboxImage = document.getElementById('lightbox-image');
+      const lightboxTitle = document.getElementById('lightbox-title');
+      const lightboxCaption = document.getElementById('lightbox-caption');
+      const lightboxDisclaimer = document.getElementById('lightbox-disclaimer');
+      let activeExhibit = 0;
+      function showExhibit(index) {
+        activeExhibit = (index + data.exhibits.length) % data.exhibits.length;
+        const item = data.exhibits[activeExhibit];
+        lightboxImage.src = `${evidencePath}screencap/${item.file}`;
+        lightboxImage.alt = item.alt;
+        lightboxTitle.textContent = `${item.title} / ${item.file} / ${activeExhibit+1} of ${data.exhibits.length}`;
+        lightboxCaption.textContent = item.description;
+        lightboxDisclaimer.textContent = disclaimer;
+      }
+      document.querySelectorAll('[data-exhibit-index]').forEach(button => button.addEventListener('click', () => {
+        showExhibit(Number(button.dataset.exhibitIndex));
+        lightbox.showModal();
+      }));
+      document.getElementById('lightbox-close').addEventListener('click', () => lightbox.close());
+      document.getElementById('lightbox-prev').addEventListener('click', () => showExhibit(activeExhibit-1));
+      document.getElementById('lightbox-next').addEventListener('click', () => showExhibit(activeExhibit+1));
+      lightbox.addEventListener('click', event => { if (event.target === lightbox) lightbox.close(); });
+      document.addEventListener('keydown', event => {
+        if (!lightbox.open) return;
+        if (event.key === 'ArrowLeft') showExhibit(activeExhibit-1);
+        if (event.key === 'ArrowRight') showExhibit(activeExhibit+1);
+      });
+
+      document.getElementById('copy-doi').addEventListener('click', async () => {
+        const status = document.getElementById('copy-status');
+        try {
+          await navigator.clipboard.writeText('10.5281/zenodo.24224068');
+          status.textContent = 'DOI COPIED';
+        } catch (_) {
+          status.textContent = 'DOI: 10.5281/zenodo.24224068';
+        }
+      });
+
+      const progress = document.getElementById('progress');
+      function updateProgress() {
+        const max = document.documentElement.scrollHeight - window.innerHeight;
+        const amount = max > 0 ? (window.scrollY / max) * 100 : 0;
+        progress.style.width = `${Math.min(100,Math.max(0,amount))}%`;
+      }
+      window.addEventListener('scroll', updateProgress, {passive:true});
+      window.addEventListener('resize', updateProgress);
+      updateProgress();
+
+      const navLinks = [...document.querySelectorAll('.primary-nav a')];
+      const sections = navLinks.map(link => document.querySelector(link.getAttribute('href'))).filter(Boolean);
+      if ('IntersectionObserver' in window) {
+        const observer = new IntersectionObserver(entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              navLinks.forEach(link => link.removeAttribute('aria-current'));
+              const active = navLinks.find(link => link.getAttribute('href') === `#${entry.target.id}`);
+              if (active) active.setAttribute('aria-current','location');
+            }
+          });
+        }, {rootMargin:'-18% 0px -68% 0px'});
+        sections.forEach(section => observer.observe(section));
+      }
+    })();
+  </script>
+</body>
+</html>

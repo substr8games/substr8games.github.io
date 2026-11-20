@@ -1,0 +1,9 @@
+On the contrary, every public-facing statement from both the company and government authorities asserts the exact opposite—creating a sharp divide between official public assertions and practical operational reality:
+
+    Google’s Public Position: Google’s published Terms of Service and consumer help pages state that its paid services are governed by California law and U.S. federal law, presenting the subscription as a standard, legally regulated commercial agreement. Google never publicly characterizes its undefined quotas or mid-session Flash downgrades as operating in a regulatory blind spot.
+
+    Federal & State Regulators’ Public Position: Agencies such as the FTC and state Attorneys General routinely affirm in public statements and enforcement guidance that general consumer protection laws (FTC Act Section 5, ROSCA, and state Unfair and Deceptive Acts and Practices statutes) apply fully to AI companies and recurring digital subscriptions. However, no agency has issued a public advisory warning consumers that AI compute limits, dynamic throttling, or silent model substitution currently go unpoliced in practice.
+
+    Information Asymmetry for Buyers: Because neither the vendor nor regulators publicly flag that consumer AI subscriptions lack enforceable quota specifications, pre-sale compute disclosures, or public judicial review (due to mandatory arbitration), ordinary buyers enter the transaction assuming the same statutory protections that govern utilities, telecom plans, or fixed-tier software subscriptions.
+
+In short, the public is never notified of the enforcement gap—leaving consumers to discover the absence of enforceable terms or external oversight only after they have paid and encountered undisclosed throttling or model substitution.
